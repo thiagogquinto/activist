@@ -28,23 +28,6 @@ import uuid
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 
-
-class Organization(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255)
-    tagline = models.CharField(max_length=255)
-    social_accounts = ArrayField(models.CharField(max_length=255))
-    total_flags = models.IntegerField(null=True)
-    created_by = models.ForeignKey(
-        "authentication.User", related_name="created_orgs", on_delete=models.CASCADE
-    )
-    creation_date = models.DateTimeField(auto_now_add=True)
-    deletion_date = models.DateField(null=True)
-
-    def __str__(self):
-        return self.name
-
-
 class OrganizationApplicationStatus(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     status_name = models.CharField(max_length=255)
@@ -66,6 +49,22 @@ class OrganizationApplication(models.Model):
 
     def __str__(self):
         return self.creation_date
+
+class Organization(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255)
+    tagline = models.CharField(max_length=255)
+    social_accounts = ArrayField(models.CharField(max_length=255))
+    total_flags = models.IntegerField(null=True)
+    application_id = models.ForeignKey(OrganizationApplication, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(
+        "authentication.User", related_name="created_orgs", on_delete=models.CASCADE
+    )
+    creation_date = models.DateTimeField(auto_now_add=True)
+    deletion_date = models.DateField(null=True)
+
+    def __str__(self):
+        return self.name
 
 
 class OrganizationEvent(models.Model):
