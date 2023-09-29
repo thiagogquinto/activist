@@ -5,7 +5,7 @@ interface Props {
 export default function useFormInput(
   props: Props,
   emit: any,
-  debounce?: false
+  debounce = false
 ): { updateValue: (event: Event) => void } {
   const inputDebounce = useDebounceFn((val: any) => {
     emit("update:modelValue", val);
@@ -20,6 +20,9 @@ export default function useFormInput(
 
     if ((event.target as HTMLInputElement).type === "radio") {
       val = props.value;
+    }
+    if ((event.target as HTMLInputElement).type === "text") {
+      val = (event.target as HTMLInputElement).value
     }
     if (debounce) {
       inputDebounce(val);
