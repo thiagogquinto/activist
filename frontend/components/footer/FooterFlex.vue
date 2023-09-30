@@ -34,7 +34,7 @@
       </div>
       <!-- Note: Legal Links -->
       <div class="flex mt-5">
-        <template v-for="(policy, index) in links.registrationLinks">
+        <template v-for="(policy, index) in links.legalLinks">
           <div class="hover:text-light-text dark:hover:text-dark-text">
             <NuxtLink class="focus-brand" :to="localePath(policy.url)">
               {{ $t(policy.name) }}

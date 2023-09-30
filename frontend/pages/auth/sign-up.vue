@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import FormCheckboxButton from '../../components/form/FormCheckboxButton.vue';
 
 definePageMeta({
   layout: "auth",
@@ -8,6 +7,14 @@ definePageMeta({
 const userNameValue = ref("");
 const passwordValue = ref("");
 const confirmPasswordValue = ref("");
+
+const isPasswordMatch = computed(() => {
+  if (passwordValue.value === "" || confirmPasswordValue.value === "") {
+    return false;
+  }
+  return passwordValue.value === confirmPasswordValue.value;
+});
+
 </script>
 
 <template>
@@ -27,7 +34,7 @@ const confirmPasswordValue = ref("");
           input-type="password"
           :model-value="passwordValue"
           @update:model-value="passwordValue = $event"
-          :isInfoIconVisible="true"
+          :iconsNames="['mdi:alert-circle-outline', 'mdi:eye']"
         />
       </div>
       <div>
@@ -37,6 +44,7 @@ const confirmPasswordValue = ref("");
           input-type="password"
           :model-value="confirmPasswordValue "
           @update:model-value="confirmPasswordValue = $event"
+          :iconsNames="isPasswordMatch ? ['mdi:check', 'mdi:eye'] : ['mdi:close', 'mdi:eye']"
         />
       </div>
       <div class="grid grid-cols-9 space-x-12 md:space-x-2">
