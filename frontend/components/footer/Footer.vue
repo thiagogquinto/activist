@@ -88,16 +88,16 @@ const platformLinks = [
   },
 ];
 
-const registrationLinks = [
-  {
-    name: "pages.auth.sign-in.index.sign-in",
-    url: "/auth/sign-in/",
-  },
-  {
-    name: "pages.auth.sign-up.index.sign-up",
-    url: "/auth/sign-up/",
-  }
-];
+// const registrationLinks = [
+//   {
+//     name: "pages.auth.sign-in.index.sign-in",
+//     url: "/auth/sign-in/",
+//   },
+//   {
+//     name: "pages.auth.sign-up.index.sign-up",
+//     url: "/auth/sign-up/",
+//   }
+// ];
 
 const legalLinks = [
   {
@@ -116,6 +116,6 @@ const links = {
   organizationLinks,
   platformLinks,
   legalLinks,
-  registrationLinks,
+  // registrationLinks,
 };
 </script>

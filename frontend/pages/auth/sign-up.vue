@@ -7,6 +7,7 @@ definePageMeta({
 const userNameValue = ref("");
 const passwordValue = ref("");
 const confirmPasswordValue = ref("");
+const hasRed = ref(false);
 
 const isPasswordMatch = computed(() => {
   if (passwordValue.value === "" || confirmPasswordValue.value === "") {
@@ -14,6 +15,7 @@ const isPasswordMatch = computed(() => {
   }
   return passwordValue.value === confirmPasswordValue.value;
 });
+
 
 </script>
 
@@ -34,7 +36,7 @@ const isPasswordMatch = computed(() => {
           input-type="password"
           :model-value="passwordValue"
           @update:model-value="passwordValue = $event"
-          :iconsNames="['mdi:alert-circle-outline', 'mdi:eye']"
+          :iconsNames="['bi:info-circle', 'bi:eye-fill']"
         />
       </div>
       <div>
@@ -44,9 +46,20 @@ const isPasswordMatch = computed(() => {
           input-type="password"
           :model-value="confirmPasswordValue "
           @update:model-value="confirmPasswordValue = $event"
-          :iconsNames="isPasswordMatch ? ['mdi:check', 'mdi:eye'] : ['mdi:close', 'mdi:eye']"
+          :iconsNames="isPasswordMatch ? ['bi:check-lg', 'bi:eye-fill'] : ['bi:x-lg', 'bi:eye-fill']"
         />
       </div>
+
+      <div>
+        <FormCheckbox 
+          :label="$t('pages.auth.sign-up.index.read-terms-of-service')"
+          :modelValue="hasRed"
+          value="yes"
+          :error="hasRedError"
+          @update:modelValue="hasRed = $event"
+        />
+      </div>
+      
       <div class="grid grid-cols-9 space-x-12 md:space-x-2">
         <button
           class="flex items-center justify-center 2xl:space-x-[4.5vw] xl:space-x-8 lg:space-x-4 md:space-x-4 lg:col-span-5 md:col-span-2 px-3 rounded border border-black text-sm min-w-[68px] h-[48px] md:h-[40px]"
@@ -63,6 +76,8 @@ const isPasswordMatch = computed(() => {
             >FriendlyCaptcha</span
           >
         </button>
+
+
         <BtnLabeled
           class="flex items-center justify-center truncate max-h-[48px] md:max-h-[40px] w-[116px] md:w-[96px]"
           label="Sign Up"
@@ -72,6 +87,8 @@ const isPasswordMatch = computed(() => {
           ariaLabel="SignUp"
         />
       </div>
+
+
       <div class="flex justify-center pt-12">
         <h6>{{ $t("pages.auth.sign-up.index.already-have-an-account") }}</h6>
         <NuxtLink
