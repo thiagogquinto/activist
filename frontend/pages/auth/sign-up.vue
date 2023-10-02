@@ -50,7 +50,7 @@ const isPasswordMatch = computed(() => {
         />
       </div>
 
-      <div>
+      <div class="flex items-center">
         <FormCheckbox 
           :label="$t('pages.auth.sign-up.index.read-terms-of-service')"
           :modelValue="hasRed"
@@ -58,6 +58,14 @@ const isPasswordMatch = computed(() => {
           :error="hasRedError"
           @update:modelValue="hasRed = $event"
         />
+
+        <NuxtLink
+          :to="'../legal/privacy-policy'"
+          target="_blank"
+          class="ml-1 text-[#005CB8E5]"
+          >{{ $t("pages.auth.sign-up.index.terms-of-service") }}
+        </NuxtLink>
+
       </div>
       
       <div class="grid grid-cols-9 space-x-12 md:space-x-2">
