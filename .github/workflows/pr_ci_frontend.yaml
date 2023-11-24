@@ -43,3 +43,11 @@ jobs:
         with:
           cmd: eslint . --ext .js,.vue
           dir: "frontend"
+
+      - name: Run Axe - Accessibility check
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: nuxi axe --save --output axe_report.json
+          dir: "frontend"
+        continue-on-error: true
+

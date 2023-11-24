@@ -117,6 +117,7 @@ Note that the Figma file above is the [public facing designs](https://www.figma.
 > - [ms-vsliveshare.vsliveshare](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare) # for collaboration
 > - [Vue.volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 > - [Vue.vscode-typescript-vue-plugin](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin)
+> - [deque-systems.vscode-axe-linter](https://marketplace.visualstudio.com/items?itemName=deque-systems.vscode-axe-linter)
 >
 > </p>
 > </details>
