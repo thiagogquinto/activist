@@ -45,9 +45,10 @@ jobs:
           dir: "frontend"
 
       - name: Run Axe - Accessibility check
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: nuxi axe --save --output axe_report.json
-          dir: "frontend"
+        working-directory: ./frontend
+        run: |
+          npx wait-on http://localhost:5000
+          yarn add @axe-core/cli
+          axe http://localhost:5000 --exit
         continue-on-error: true
 
