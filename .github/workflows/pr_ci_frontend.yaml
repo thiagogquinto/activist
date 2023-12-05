@@ -44,11 +44,16 @@ jobs:
           cmd: eslint . --ext .js,.vue
           dir: "frontend"
 
+      # - name: Run Axe - Accessibility check
+      #   working-directory: ./frontend
+      #   run: |
+      #     yarn add -D axe-core vue-axe@next
+      #   continue-on-error: true
+
       - name: Run Axe - Accessibility check
         working-directory: ./frontend
         run: |
-          npx wait-on http://localhost:5000
-          yarn add @axe-core/cli
-          axe http://localhost:5000 --exit
+          yarn global add @axe-core/cli
+          axe http://localhost:3000 --exit
         continue-on-error: true
 
